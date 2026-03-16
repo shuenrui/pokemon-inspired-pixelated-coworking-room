@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "noEmit": false,
+    "paths": {
+      "@tiletown/content": ["../content/dist/index.d.ts"]
+    }
+  },
+  "include": ["src"]
+}

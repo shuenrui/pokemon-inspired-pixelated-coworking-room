@@ -1,0 +1,10 @@
+services:
+  tiletown:
+    build: .
+    ports:
+      - "8787:8787"
+    environment:
+      PORT: "8787"
+      WEB_DIST_DIR: "/app/apps/web/dist"
+    volumes:
+      - ./apps/server/data:/app/apps/server/data

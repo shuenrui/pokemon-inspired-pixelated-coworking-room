@@ -1,0 +1,16 @@
+{
+  "name": "tiletown-coworking",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "npm@10.9.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @tiletown/web",
+    "dev:server": "npm run dev --workspace @tiletown/server",
+    "build": "npm run build --workspace @tiletown/content && npm run build --workspace @tiletown/engine && npm run build --workspace @tiletown/ui && npm run build --workspace @tiletown/cli && npm run build --workspace @tiletown/server && npm run build --workspace @tiletown/web",
+    "check": "npm run build --workspace @tiletown/content && npm run build --workspace @tiletown/engine && npm run check --workspace @tiletown/ui && npm run check --workspace @tiletown/cli && npm run check --workspace @tiletown/server && npm run check --workspace @tiletown/web"
+  }
+}

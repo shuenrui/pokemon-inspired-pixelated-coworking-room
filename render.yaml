@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: tiletown-coworking
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "8787"
+      - key: WEB_DIST_DIR
+        value: /app/apps/web/dist
+      - key: ALLOW_ORIGIN
+        value: "*"
+      - key: ADMIN_TOKEN
+        sync: false
+    disk:
+      name: tiletown-data
+      mountPath: /app/apps/server/data
+      sizeGB: 1

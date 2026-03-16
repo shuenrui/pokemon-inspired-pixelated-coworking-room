@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "rootDir": "src",
+    "noEmit": false,
+    "lib": ["ES2022"],
+    "types": ["node"],
+    "paths": {
+      "@tiletown/content": ["../../packages/content/dist/index.d.ts"],
+      "@tiletown/engine": ["../../packages/engine/dist/index.d.ts"]
+    }
+  },
+  "include": ["src"]
+}
