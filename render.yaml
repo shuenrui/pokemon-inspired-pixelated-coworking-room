@@ -1,10 +1,12 @@
 services:
   - type: web
-    name: tiletown-coworking
+    name: tiletown-coworking-staging
     runtime: docker
     plan: starter
     healthCheckPath: /health
     envVars:
+      - key: NODE_ENV
+        value: production
       - key: PORT
         value: "8787"
       - key: WEB_DIST_DIR

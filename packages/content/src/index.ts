@@ -1,3 +1,9 @@
+import {
+  generatedRoomCollision,
+  generatedRoomTiles,
+  generatedRoomZones
+} from "./generatedRoomLayout";
+
 export const tileSize = 16;
 
 export type TileKind = "wall" | "floor" | "entry" | "rug";
@@ -66,58 +72,35 @@ export type RoomSnapshot = {
 
 export const furnitureCatalog: FurnitureDefinition[] = [
   { id: "desk", label: "Desk", width: 2, height: 1, color: 0xb9895c },
+  { id: "bed", label: "Bed", width: 2, height: 2, color: 0xe6e2d6 },
   { id: "plant", label: "Plant", width: 1, height: 1, color: 0x58a04a },
+  { id: "dresser", label: "Dresser", width: 2, height: 1, color: 0x9c7448 },
   { id: "bookshelf", label: "Bookshelf", width: 2, height: 1, color: 0x85683e },
   { id: "meeting-table", label: "Meeting Table", width: 2, height: 2, color: 0xd69258 }
 ];
 
 export const starterPlacedItems: PlacedItem[] = [
-  { id: "north-left-desk", itemId: "desk", x: 2, y: 2 },
-  { id: "north-right-desk", itemId: "desk", x: 13, y: 2 },
-  { id: "center-table", itemId: "meeting-table", x: 9, y: 3 },
-  { id: "south-left-plant", itemId: "plant", x: 2, y: 8 },
-  { id: "south-right-shelf", itemId: "bookshelf", x: 15, y: 8 }
+  { id: "north-bed", itemId: "bed", x: 2, y: 2 },
+  { id: "north-dresser", itemId: "dresser", x: 5, y: 2 },
+  { id: "north-desk", itemId: "desk", x: 10, y: 2 },
+  { id: "north-bookshelf", itemId: "bookshelf", x: 15, y: 2 },
+  { id: "center-table", itemId: "meeting-table", x: 9, y: 4 },
+  { id: "south-left-plant", itemId: "plant", x: 3, y: 9 },
+  { id: "south-right-shelf", itemId: "bookshelf", x: 14, y: 9 }
 ];
 
 export const starterRoomDefinition: RoomDefinition = {
   id: "starter-coworking-room",
-  name: "Starter Coworking Room",
-  tiles: [
-    ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"],
-    ["wall", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "wall"],
-    ["wall", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "wall"],
-    ["wall", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "rug", "rug", "rug", "rug", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "wall"],
-    ["wall", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "rug", "rug", "rug", "rug", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "wall"],
-    ["wall", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "rug", "rug", "rug", "rug", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "wall"],
-    ["wall", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "wall"],
-    ["wall", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "wall"],
-    ["wall", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "wall"],
-    ["wall", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "wall"],
-    ["wall", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "wall"],
-    ["wall", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "floor", "wall"],
-    ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "entry", "entry", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"]
-  ],
-  collision: [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-    [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  ],
-  entry: { x: 9, y: 8 },
-  interactionPoints: [
-    { id: "coffee-station", label: "Coffee Station", x: 2, y: 2 },
-    { id: "meeting-zone", label: "Meeting Zone", x: 9, y: 3 },
-    { id: "shelf", label: "Shelf", x: 15, y: 8 }
-  ]
+  name: "Modern Office Coworking Room",
+  tiles: generatedRoomTiles.map((row) => [...row]) as TileKind[][],
+  collision: generatedRoomCollision.map((row) => [...row]) as number[][],
+  entry: { x: 14, y: 20 },
+  interactionPoints: generatedRoomZones.map((zone) => ({
+    id: zone.name,
+    label: zone.label,
+    x: zone.tiles[0]?.x ?? 1,
+    y: zone.tiles[0]?.y ?? 1
+  }))
 };
 
 export const starterRoomSnapshot: RoomSnapshot = {
@@ -146,11 +129,11 @@ export const starterRoomSnapshot: RoomSnapshot = {
       displayName: "Mira",
       spriteId: "npc-npc-1",
       color: 0x77c7d9,
-      position: { x: 5, y: 5 },
+      position: { x: 2, y: 8 },
       facing: "down",
       movement: {
         mode: "sync",
-        target: { x: 5, y: 5 },
+        target: { x: 2, y: 8 },
         updatedAt: "2026-03-16T00:00:00.000Z"
       }
     },
@@ -160,11 +143,11 @@ export const starterRoomSnapshot: RoomSnapshot = {
       displayName: "Pip",
       spriteId: "npc-npc-2",
       color: 0xf2a65a,
-      position: { x: 13, y: 6 },
+      position: { x: 14, y: 13 },
       facing: "left",
       movement: {
         mode: "sync",
-        target: { x: 13, y: 6 },
+        target: { x: 14, y: 13 },
         updatedAt: "2026-03-16T00:00:00.000Z"
       }
     },
@@ -174,11 +157,11 @@ export const starterRoomSnapshot: RoomSnapshot = {
       displayName: "Nori",
       spriteId: "npc-npc-3",
       color: 0x9a6dd7,
-      position: { x: 9, y: 10 },
+      position: { x: 15, y: 20 },
       facing: "up",
       movement: {
         mode: "sync",
-        target: { x: 9, y: 10 },
+        target: { x: 15, y: 20 },
         updatedAt: "2026-03-16T00:00:00.000Z"
       }
     }

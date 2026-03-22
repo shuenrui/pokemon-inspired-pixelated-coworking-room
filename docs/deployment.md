@@ -55,9 +55,21 @@ The repo now includes [render.yaml](/Users/leeshuenrui/Documents/Playground/rend
 Expected setup on Render:
 
 1. Create a new Blueprint deployment from the repo.
-2. Set `ADMIN_TOKEN` in the Render dashboard.
-3. Keep the persistent disk mounted at `/app/apps/server/data`.
-4. Deploy the service and verify `/health`.
+2. The service name is set to `tiletown-coworking-staging`.
+3. Set `ADMIN_TOKEN` in the Render dashboard.
+4. Keep the persistent disk mounted at `/app/apps/server/data`.
+5. Deploy the service and verify `/health`.
+6. Open the staging URL and confirm:
+   - the modern office room renders
+   - player movement works
+   - SSE room updates connect
+   - SQLite data persists across restarts
+
+Recommended first staging pass:
+
+- deploy this app as the main staging experience
+- do not keep iterating on the old OpenClaw dashboard UI
+- if needed, use the old dashboard only as a link or redirect into the new staging URL
 
 ## CI
 
