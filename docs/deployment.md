@@ -71,6 +71,32 @@ Recommended first staging pass:
 - do not keep iterating on the old OpenClaw dashboard UI
 - if needed, use the old dashboard only as a link or redirect into the new staging URL
 
+## Vercel Preview
+
+The repo now also supports a frontend-only Vercel deployment via [vercel.json](/Users/leeshuenrui/Documents/Playground/vercel.json).
+
+This mode is intended for:
+
+- public design preview
+- room and movement review
+- sharing the current landscape quickly
+
+This mode does **not** include:
+
+- SQLite persistence
+- the Node API server
+- SSE live room updates
+
+Expected setup on Vercel:
+
+1. Import the GitHub repo into Vercel.
+2. Use the root directory of the repo.
+3. Vercel should pick up [vercel.json](/Users/leeshuenrui/Documents/Playground/vercel.json).
+4. Add environment variable `VITE_ROOM_SOURCE=mock`.
+5. Deploy.
+
+The result is a standalone frontend preview of the coworking room using mock room state.
+
 ## CI
 
 The repo now includes [ci.yml](/Users/leeshuenrui/Documents/Playground/.github/workflows/ci.yml) so every push or pull request runs:

@@ -1,10 +1,10 @@
 # TileTown Coworking
 
-TileTown Coworking is a Pokemon-inspired pixel coworking sim built as a web-first monorepo. The goal is a top-down, tile-based social workspace where players walk on a strict grid, decorate rooms, and eventually create or share content through tooling.
+TileTown Coworking is a Pokemon-inspired pixel coworking sim built as a web-first monorepo. The current active runtime is a canvas-based room experience with pre-rendered background and foreground maps, centered-player movement, flat collision data, and zone-based coworking agents.
 
 ## Workspace layout
 
-- `apps/web`: Playable client built with React, Vite, and Phaser.
+- `apps/web`: Playable client built with React, Vite, and a canvas room renderer.
 - `packages/content`: Shared game data for rooms, items, NPCs, and themes.
 - `packages/engine`: Gameplay rules and room simulation helpers.
 - `packages/ui`: Shared UI primitives for app overlays and editor tools.
@@ -13,23 +13,24 @@ TileTown Coworking is a Pokemon-inspired pixel coworking sim built as a web-firs
 
 ## Current scope
 
-The repository is scaffolded for v0:
+The current staging scope includes:
 
-- one indoor coworking room
+- one modern coworking room
 - one controllable avatar
 - four-direction grid movement
-- room decoration mode
+- zone-based agent positioning
+- static background/foreground map rendering
 - shared content definitions
-- future-ready package boundaries
+- deployment paths for both full-stack hosting and frontend-only preview
 
 ## State model
 
-The prototype now uses two layers of room data:
+The app uses two layers of room data:
 
 - `RoomDefinition`: static map, collision, entry, and interaction points
 - `RoomSnapshot`: live players, NPCs, and placed items
 
-The frontend adapter lives in `apps/web/src/data/roomState.ts` and `apps/web/src/data/roomService.ts`. This keeps the scene ready for a future database or realtime backend instead of hardcoded local simulation.
+The frontend adapter lives in `apps/web/src/data/roomState.ts` and `apps/web/src/data/roomService.ts`. This keeps the scene ready for a database-backed or realtime backend instead of hardcoded local simulation.
 
 ## Backend docs
 
@@ -37,11 +38,11 @@ The frontend adapter lives in `apps/web/src/data/roomState.ts` and `apps/web/src
 - `docs/api-contract.md`: room snapshot request/response shapes
 - `docs/deployment.md`: container and runtime deployment notes
 
-## First steps
+## Local preview
 
 1. Install dependencies with `npm install`.
 2. Run the web app with `npm run dev`.
-3. Build the first playable room scene in `apps/web`.
+3. Open the local Vite URL.
 
 ## Live mode
 
@@ -53,6 +54,17 @@ The frontend defaults to mock room state. To use the local API server path:
 
 The Vite dev server proxies `/api/*` requests to `http://localhost:8787`.
 The SQLite database is created at `apps/server/data/tiletown.db`.
+
+## Vercel preview
+
+For the fastest public preview, deploy the frontend-only experience to Vercel:
+
+1. Import the repo into Vercel.
+2. Keep the repo root as the project root.
+3. Set environment variable `VITE_ROOM_SOURCE=mock`.
+4. Deploy.
+
+The Vercel path is intended for visual review and interaction preview only. It does not include the Node API server, SSE sync, or SQLite persistence.
 
 ## Production run
 
